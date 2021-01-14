@@ -12,7 +12,7 @@ print_mem(){
 	memavailable=$(grep -m1 'MemAvailable:' /proc/meminfo | awk '{print $2}');
 	memtotal=$(grep -m1 'MemTotal:' /proc/meminfo | awk '{print $2}');
     memusedpercent=$[ ($memtotal - $memavailable) * 100 / $memtotal ];
-	echo "$memusedpercent%";
+	echo " $memusedpercent%";
 }
 
 print_alsa(){
@@ -27,11 +27,11 @@ print_alsa(){
 
 print_bat(){
     batpercent=$(expr $(acpi -b | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc))
-    if [ "$(acpi -b | grep 'Battery 0' | grep Discharging)" == "" ]; then chargesign=""; fi
-    if [ "$batpercent" -le 10 ]; then batsign="";
-    elif [ "$batpercent" -le 25 ]; then batsign="";
-    elif [ "$batpercent" -le 50 ]; then batsign="";
-    elif [ "$batpercent" -le 95 ]; then batsign="";
+    if [ "$(acpi -b | grep 'Battery 0' | grep Discharging)" == "" ]; then chargesign=" "; fi
+    if [ "$batpercent" -le 10 ]; then batsign="  ";
+    elif [ "$batpercent" -le 25 ]; then batsign="  ";
+    elif [ "$batpercent" -le 50 ]; then batsign="  ";
+    elif [ "$batpercent" -le 95 ]; then batsign="  ";
     else chargesign=""; batsign="☻"; fi
     echo "$chargesign$batsign$batpercent%"
 }
