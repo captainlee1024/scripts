@@ -10,7 +10,8 @@ nm-applet &
 
 sleep 5
 
+picom --config /home/lee/scripts/config/compton.conf &
 
-feh --bg-fill /home/lee/Pictures/wallpaper/arch-color-01.png
+feh --bg-fill /home/lee/Pictures/wallpaper/arch-color-02.jpg
 
 fcitx &
